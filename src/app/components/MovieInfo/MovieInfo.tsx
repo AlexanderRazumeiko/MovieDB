@@ -24,7 +24,6 @@ const MovieInfo = ({ movieInfo, personsList }: MovieInfoProps) => {
     original_language,
   } = movieInfo;
 
-  console.log(movieInfo);
   return (
     <>
       <div className={styles.main}>
