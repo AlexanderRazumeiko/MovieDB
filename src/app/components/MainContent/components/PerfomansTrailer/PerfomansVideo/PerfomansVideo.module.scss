@@ -1,0 +1,13 @@
+.video_wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  img {
+    border-radius: 5%;
+  }
+
+  &:hover {
+   opacity: 0.8;
+  }
+}

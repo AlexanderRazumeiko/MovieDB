@@ -1,0 +1,72 @@
+.visited_block {
+    width: 100%;
+    height: 450px;
+  }
+  
+  
+  .visited_content {
+    margin-top: 33px;
+    margin-left: 90px;
+    margin-right: 90px;
+    background-repeat: no-repeat;
+    background-image:  url('img/visit.jpg');
+    background-size: 100%;
+    padding: 60px;
+  }
+  
+  
+  .visited_text {
+    h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+    h2 {
+      margin: 0;
+      font-size: 2em;
+    }
+  }
+  
+  .visited_search_block {
+    margin-top: 50px;
+    width: 100%;
+  }
+  
+  .visited_search_panel {
+    width: 98%;
+    height: 46px;
+    line-height: 46px;
+    font-size: 1.1em;
+    color: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+  }
+  .visited_form {
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+  
+  .search_submit {
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 46px;
+    padding: 10px 26px;
+    border: none;
+    border-radius: 30px;
+    position: absolute;
+    top: 0;
+    right: -1px;
+    background: linear-gradient(90deg, #0461E5 0%, #04CDC2 100%);
+    height: 67px;
+    width:130px;
+    font-size: 0.9em;
+    color: whitesmoke;
+    &:hover{
+      color: #302c2c;
+    }
+  }
+  

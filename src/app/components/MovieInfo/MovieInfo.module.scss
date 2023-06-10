@@ -1,0 +1,25 @@
+.main {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+
+.sub_info {
+    max-width: 100%;
+    display:flex;
+    gap: 50px;
+}
+
+.info_facts {
+    display: flex;
+  flex-direction: column;
+    gap:10px;
+    margin-top: 160px;
+    span {
+        color: grey;
+    }
+}
