@@ -59,7 +59,7 @@ const MoviePoster = ({
               <span>{formatIime(runtime)}</span>
             </div>
             <div className={styles.poster_actions}>
-              <div className={styles.poster_rate}>{Math.round(rate)}</div>
+              <div className={styles.poster_rate}>{rate.toFixed(1)}</div>
               <h3>Rate</h3>
               <div className={styles.poster_action_round}>
                 <AiFillHeart width={20} />
