@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import styles from "./PerfomansCard.module.scss";
 import Image from "next/image";
+import EmptyImage from "@/app/components/EmptyImage/EmptyImage";
 
 type PerfomansCardProps = {
   rate?: number;
@@ -9,8 +10,16 @@ type PerfomansCardProps = {
   title: string;
   date?: string;
   id: number;
-  width?: number;
-  height?: number;
+  personList?: boolean;
+  noOptions?: boolean;
+};
+
+const colorRate = (rate: number) => {
+  if (rate === 0) return "grey";
+  if (rate > 7) return "green";
+  if (rate < 7 && rate > 5) return "grey";
+  if (rate < 5) return "red";
+  return "grey";
 };
 
 const PerfomansCard = ({
@@ -19,39 +28,44 @@ const PerfomansCard = ({
   title,
   id,
   date,
-  width,
-  height,
+  personList,
+  noOptions,
 }: PerfomansCardProps) => {
-  const colorRate = (rate: number) => {
-    if (rate > 7) return "green";
-    if (rate < 7 && rate > 5) return "grey";
-    if (rate < 5) return "red";
-    return "grey";
-  };
   const router = useRouter();
   return (
     <div
       className={styles.card}
-      onClick={() => !width && router.push(`/movies/${id}`)}
+      onClick={() => !personList && router.push(`/movie-poster/${id}`)}
     >
-      <div className={styles.card_wrapper}>
-        <div className={styles.card_top_info}>
-          {rate && (
+      <div
+        className={styles.card_wrapper}
+        style={{ width: personList ? "250px" : "300px" }}
+      >
+        {!personList && (
+          <div className={styles.card_top_info}>
             <div
               className={styles.card_rate}
-              style={{ backgroundColor: colorRate(rate) }}
+              style={{ backgroundColor: colorRate(rate || 0) }}
             >
-              {rate}
+              {rate ? rate : "NR"}
             </div>
+
+            {!noOptions && <div className={styles.card_option}>...</div>}
+          </div>
+        )}
+
+        <div className={styles.card_image_wrapper}>
+          {!!posterPath ? (
+            <Image
+              src={`https://image.tmdb.org/t/p/original/${posterPath}`}
+              alt={"poster"}
+              width={personList ? 250 : 320}
+              height={personList ? 350 : 400}
+            />
+          ) : (
+            <EmptyImage />
           )}
-          {!width && <div className={styles.card_option}>...</div>}
         </div>
-        <Image
-          src={`https://image.tmdb.org/t/p/original/${posterPath}`}
-          alt={"poster"}
-          width={width || 320}
-          height={height || 400}
-        />
       </div>
       <div className={styles.card_content}>
         <h4>{title}</h4>

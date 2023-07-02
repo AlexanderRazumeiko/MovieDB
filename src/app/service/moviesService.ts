@@ -1,6 +1,4 @@
 import axios from "axios";
-import { revalidatePath } from "next/cache";
-import next from "next/types";
 
 const API_URL = "https://api.themoviedb.org/3";
 
@@ -62,19 +60,35 @@ type PersonsListResponce = {
   cast: PesonsListType[];
 };
 
+export type SortType =
+  | "popularity.asc"
+  | "popularity.desc"
+  | "vote.asc"
+  | "vote.desc"
+  | "primary_release_date.asc"
+  | "primary_release_date.desc";
+
+export type MovieCategoryType =
+  | "now_playing"
+  | "popular"
+  | "upcoming"
+  | "top_rated";
+
+export type FilterDataType = {
+  sortBy: SortType;
+  genres: string[];
+  vote: number;
+  page: number;
+};
+
 const MoviesListService = {
-  async getNowWatchingMovies() {
+  async getMoviesList(category: MovieCategoryType) {
     const { data } = await axios.get<MoviesResponce>(
-      `/movie/now_playing?api_key=${SSH_KEY}`
+      `/movie/${category}?api_key=${SSH_KEY}`
     );
     return data.results;
   },
-  async getPopularMovies() {
-    const { data } = await axios.get<MoviesResponce>(
-      `/movie/popular?api_key=${SSH_KEY}`
-    );
-    return data.results;
-  },
+
   async getMovieInfo(id: string) {
     const { data } = await axios.get<MovieInfoType>(
       `/movie/${id}?api_key=${SSH_KEY}`
@@ -87,6 +101,19 @@ const MoviesListService = {
       `/movie/${id}/credits?api_key=${SSH_KEY}`
     );
     return data.cast;
+  },
+  async getFilteredMovies(filterData: FilterDataType) {
+    const { genres, vote, sortBy, page } = filterData;
+    const genresString =
+      genres.length > 1 ? genres.join("%2C").toLowerCase() : genres;
+    const { data } = !genres.length
+      ? await axios.get<MoviesResponce>(
+          `discover/movie?include_adult=false&include_video=false&language=en-US&api_key=${SSH_KEY}&page=${page}&sort_by=${sortBy}&vote_average.gte=${vote}`
+        )
+      : await axios.get<MoviesResponce>(
+          `discover/movie?include_adult=false&include_video=false&language=en-US&api_key=${SSH_KEY}&page=${page}&sort_by=${sortBy}&vote_average.gte=${vote}&with_genres=${genresString}`
+        );
+    return data.results;
   },
 };
 
