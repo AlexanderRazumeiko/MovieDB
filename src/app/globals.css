@@ -51,6 +51,8 @@ a {
   text-decoration: none;
 }
 
+
+
 :active,
 :hover,
 :focus {
@@ -84,3 +86,22 @@ footer {
     top: 0;
     left: 0;
 }
+
+.main {
+    display: flex;
+    margin-top: 100px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.movie_list_container {
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-left: 100px;
+  padding-top: 48px;
+  min-height: 100%;
+  flex-grow: 1;
+}
+

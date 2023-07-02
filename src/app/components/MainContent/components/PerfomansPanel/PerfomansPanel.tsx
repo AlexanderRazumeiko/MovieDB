@@ -9,17 +9,18 @@ type PerfomansPanelProps = {
   title: string;
   moviesList?: MoviesListType[];
   personsList?: PesonsListType[];
-  width?: number;
 };
 
 const PerfomansPanel = ({
   title,
   moviesList,
   personsList,
-  width,
 }: PerfomansPanelProps) => {
   return (
-    <div className={styles.panel} style={{ width: `${width}%` || "100%" }}>
+    <div
+      className={styles.panel}
+      style={{ width: personsList ? `65%` : "100%" }}
+    >
       <div className={styles.panel_tittle}>
         <h2>{title}</h2>
       </div>
@@ -40,23 +41,20 @@ const PerfomansPanel = ({
               </React.Fragment>
             );
           })}
-          {personsList
-            ?.filter((item) => item.profile_path)
-            .map((item, i) => {
-              return (
-                <React.Fragment key={i}>
-                  {
-                    <PerfomansCard
-                      id={item.id}
-                      title={item.name}
-                      posterPath={item.profile_path || ""}
-                      width={250}
-                      height={350}
-                    />
-                  }
-                </React.Fragment>
-              );
-            })}
+          {personsList?.map((item, i) => {
+            return (
+              <React.Fragment key={i}>
+                {
+                  <PerfomansCard
+                    id={item.id}
+                    title={item.name}
+                    posterPath={item.profile_path || ""}
+                    personList
+                  />
+                }
+              </React.Fragment>
+            );
+          })}
         </div>
       </div>
     </div>

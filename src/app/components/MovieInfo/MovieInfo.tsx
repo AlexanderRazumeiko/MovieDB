@@ -38,12 +38,13 @@ const MovieInfo = ({ movieInfo, personsList }: MovieInfoProps) => {
           runtime={runtime}
         />
         <div className={styles.sub_info}>
-          <PerfomansPanel
-            title={"Starring"}
-            personsList={personsList}
-            width={75}
-          />
-          <div className={styles.info_facts}>
+          {!!personsList.length && (
+            <PerfomansPanel title={"Starring"} personsList={personsList} />
+          )}
+          <div
+            className={styles.info_facts}
+            style={{ marginTop: !!personsList.length ? "160px" : "50px" }}
+          >
             <div className={styles.info_block}>
               <h3>Original title</h3>
               <span>{title}</span>

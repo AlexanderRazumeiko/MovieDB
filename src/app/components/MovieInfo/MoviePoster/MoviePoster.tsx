@@ -32,6 +32,14 @@ const MoviePoster = ({
     return `${h}h ${m}m`;
   };
 
+  const colorRate = (rate: number) => {
+    if (rate === 0) return "grey";
+    if (rate > 7) return "green";
+    if (rate < 7 && rate > 5) return "grey";
+    if (rate < 5) return "red";
+    return "grey";
+  };
+
   return (
     <div
       className={styles.poster}
@@ -42,12 +50,14 @@ const MoviePoster = ({
       <div className={styles.poster_custom}>
         <div className={styles.poster_content}>
           <div className={styles.poster_image}>
-            <Image
-              src={`https://image.tmdb.org/t/p/original/${posterPath}`}
-              alt={"poster"}
-              width={500}
-              height={650}
-            />
+            {!!posterPath && (
+              <Image
+                src={`https://image.tmdb.org/t/p/original/${posterPath}`}
+                alt={"poster"}
+                width={500}
+                height={650}
+              />
+            )}
           </div>
           <div className={styles.poster_info}>
             <div className={styles.poster_title}>
@@ -59,16 +69,23 @@ const MoviePoster = ({
               <span>{formatIime(runtime)}</span>
             </div>
             <div className={styles.poster_actions}>
-              <div className={styles.poster_rate}>{rate.toFixed(1)}</div>
+              <div
+                className={styles.poster_rate}
+                style={{ backgroundColor: colorRate(rate || 0) }}
+              >
+                {rate ? rate.toFixed(1) : "NR"}
+              </div>
               <h3>Rate</h3>
               <div className={styles.poster_action_round}>
                 <AiFillHeart width={20} />
               </div>
             </div>
-            <div className={styles.poster_description}>
-              <h2>View</h2>
-              <p style={{ width: "60%" }}>{overview}</p>
-            </div>
+            {overview && (
+              <div className={styles.poster_description}>
+                <h2>View</h2>
+                <p style={{ width: "60%" }}>{overview}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
