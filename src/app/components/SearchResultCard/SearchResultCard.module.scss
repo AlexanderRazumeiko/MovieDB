@@ -1,0 +1,39 @@
+.card_box {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  border-radius: 10px;
+  background-color: #0a0a0a;
+  border: 1px solid #2e2e2e;
+
+  img {
+    border-radius: 10px;
+  }
+
+  h4 {
+    margin: 0px;
+    margin-bottom: 5px;
+    color: darkgrey;
+  }
+  p {
+    margin: 0;
+    color: darkgrey;
+  }
+  span {
+    color: grey;
+    font-size: 25px;
+  }
+}
+
+.card_image_wrapper {
+  height: 260px;
+  min-width: 180px;
+}
+
+.card_title {
+  margin-bottom: 40px;
+}
+
+.card_info {
+  padding: 15px 10px;
+}

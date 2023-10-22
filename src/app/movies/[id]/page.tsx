@@ -22,7 +22,6 @@ const MovieFilterPage = ({ params }: { params: { id: MovieCategoryType } }) => {
     genres: [],
   });
   const [noMoreFilms, setNoMoreFilms] = useState<boolean>(false);
-  const [componentLoaded, setComponentLoaded] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -83,10 +82,6 @@ const MovieFilterPage = ({ params }: { params: { id: MovieCategoryType } }) => {
     setFilterData({ ...filterData, page: filterData.page + 1 });
   };
 
-  useEffect(() => {
-    setComponentLoaded(true);
-  });
-
   return (
     <div className="layout">
       <Header />
@@ -100,16 +95,14 @@ const MovieFilterPage = ({ params }: { params: { id: MovieCategoryType } }) => {
           {moviesList.map((item, i) => {
             return (
               <React.Fragment key={i}>
-                {
-                  <PerfomansCard
-                    id={item.id}
-                    title={item.title}
-                    posterPath={item.poster_path}
-                    date={item.release_date}
-                    rate={item.vote_average}
-                    noOptions
-                  />
-                }
+                <PerfomansCard
+                  id={item.id}
+                  title={item.title}
+                  posterPath={item.poster_path}
+                  date={item.release_date}
+                  rate={item.vote_average}
+                  noOptions
+                />
               </React.Fragment>
             );
           })}

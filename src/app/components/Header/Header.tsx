@@ -33,20 +33,6 @@ const Header = () => {
                 </div>
               </div>
             </li>
-            <li>
-              <div className={styles.dropdown_serials}>
-                <a>Serials</a>
-                <div className={styles.dropdown_content_serials}>
-                  {dropDownList.map((items, i) => {
-                    return (
-                      <a key={i} href={`/serials/${items.link}`}>
-                        {items.label}
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
-            </li>
           </ul>
         </div>
         <div className={styles.header_content_rigt}>

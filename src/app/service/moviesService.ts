@@ -56,6 +56,12 @@ type MoviesResponce = {
   results: MoviesListType[];
 };
 
+export interface SearchMovieResponce extends MoviesResponce {
+  total_pages: number;
+  total_results: number;
+  results: MoviesListType[];
+}
+
 type PersonsListResponce = {
   cast: PesonsListType[];
 };
@@ -114,6 +120,13 @@ const MoviesListService = {
           `discover/movie?include_adult=false&include_video=false&language=en-US&api_key=${SSH_KEY}&page=${page}&sort_by=${sortBy}&vote_average.gte=${vote}&with_genres=${genresString}`
         );
     return data.results;
+  },
+  async getSearcMovies(query: string, page = "1") {
+    const { data } = await axios.get<SearchMovieResponce>(
+      `/search/movie?query=${query}&api_key=${SSH_KEY}&page=${page}`
+    );
+
+    return data;
   },
 };
 

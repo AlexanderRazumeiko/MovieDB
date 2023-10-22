@@ -1,0 +1,14 @@
+.page_list_container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.page_list_items {
+  font-size: 50px;
+  button {
+    color: white;
+    font-size: x-large;
+  }
+}
